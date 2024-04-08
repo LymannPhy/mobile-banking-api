@@ -47,12 +47,9 @@ public class AccountController {
     }
 
     @PutMapping("/{actNo}/transfer-limit")
-    public void updateTransferLimit(@PathVariable String actNo, @RequestBody TransferLimitUpdateRequest request) {
-        accountService.updateTransferLimit(actNo, request);
+    AccountResponse updateTransferLimit(@PathVariable String actNo, @RequestBody TransferLimitUpdateRequest request) {
+        return accountService.updateTransferLimit(actNo, request);
     }
-
-
-
 
 }
 

@@ -16,7 +16,7 @@ public interface AccountService {
 
     AccountResponse renameByActNo(String actNo, AccountRenameRequest accountRenameRequest);
     void hideAccount(String actNo);
-    void updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest);
+    AccountResponse updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest);
 
 
 }

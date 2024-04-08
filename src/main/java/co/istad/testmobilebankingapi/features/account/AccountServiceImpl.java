@@ -139,12 +139,13 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public void updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest) {
+    public AccountResponse updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest) {
         Account account = accountRepository.findByActNo(actNo)
                 .orElseThrow(() -> new RuntimeException("Account not found with actNo: " + actNo));
 
         BigDecimal newTransferLimit = transferLimitUpdateRequest.newTransferLimit();
         account.setTransferLimit(newTransferLimit);
         accountRepository.save(account);
+        return accountMapper.toAccountResponse(account);
     }
 }
