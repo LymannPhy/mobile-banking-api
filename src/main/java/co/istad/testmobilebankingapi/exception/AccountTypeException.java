@@ -1,4 +1,4 @@
-package co.istad.testmobilebankingapi.infrastructure.exception;
+package co.istad.testmobilebankingapi.exception;
 
 public class AccountTypeException extends RuntimeException {
     public AccountTypeException(String message) {

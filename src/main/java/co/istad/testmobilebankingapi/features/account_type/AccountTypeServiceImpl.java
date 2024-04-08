@@ -1,8 +1,8 @@
 package co.istad.testmobilebankingapi.features.account_type;
 
 import co.istad.testmobilebankingapi.domain.AccountType;
+import co.istad.testmobilebankingapi.exception.AccountTypeException;
 import co.istad.testmobilebankingapi.features.account_type.dto.AccountTypeResponse;
-import co.istad.testmobilebankingapi.infrastructure.exception.AccountTypeException;
 import co.istad.testmobilebankingapi.mapper.AccountTypeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
