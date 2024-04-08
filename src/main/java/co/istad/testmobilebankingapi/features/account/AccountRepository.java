@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
@@ -17,4 +18,11 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
         WHERE a.actNo = ?1
     """)
     void hideAccountByActNo(String actNo);
+    @Modifying
+    @Query("""
+    UPDATE Account AS a 
+    SET a.transferLimit = ?2 
+    WHERE a.actNo = ?1
+    """)
+    void updateTransferLimitByActNo(String actNo, BigDecimal newTransferLimit);
 }

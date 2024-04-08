@@ -3,8 +3,10 @@ package co.istad.testmobilebankingapi.features.account;
 import co.istad.testmobilebankingapi.features.account.dto.AccountCreateRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountRenameRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountResponse;
+import co.istad.testmobilebankingapi.features.account.dto.TransferLimitUpdateRequest;
 import org.springframework.data.domain.Page;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AccountService {
@@ -14,6 +16,7 @@ public interface AccountService {
 
     AccountResponse renameByActNo(String actNo, AccountRenameRequest accountRenameRequest);
     void hideAccount(String actNo);
+    void updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest);
 
 
 }

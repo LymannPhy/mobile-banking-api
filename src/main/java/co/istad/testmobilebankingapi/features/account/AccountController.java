@@ -3,11 +3,15 @@ package co.istad.testmobilebankingapi.features.account;
 import co.istad.testmobilebankingapi.features.account.dto.AccountCreateRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountRenameRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountResponse;
+import co.istad.testmobilebankingapi.features.account.dto.TransferLimitUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
@@ -41,6 +45,12 @@ public class AccountController {
     ){
         return accountService.findList(page, size);
     }
+
+    @PutMapping("/{actNo}/transfer-limit")
+    public void updateTransferLimit(@PathVariable String actNo, @RequestBody TransferLimitUpdateRequest request) {
+        accountService.updateTransferLimit(actNo, request);
+    }
+
 
 
 

@@ -7,6 +7,7 @@ import co.istad.testmobilebankingapi.domain.UserAccount;
 import co.istad.testmobilebankingapi.features.account.dto.AccountCreateRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountRenameRequest;
 import co.istad.testmobilebankingapi.features.account.dto.AccountResponse;
+import co.istad.testmobilebankingapi.features.account.dto.TransferLimitUpdateRequest;
 import co.istad.testmobilebankingapi.features.account_type.AccountTypeRepository;
 import co.istad.testmobilebankingapi.features.account_type.dto.AccountTypeResponse;
 import co.istad.testmobilebankingapi.features.user.UserRepository;
@@ -135,5 +136,15 @@ public class AccountServiceImpl implements AccountService{
                    "Something went wrong!"
            );
         }
+    }
+
+    @Override
+    public void updateTransferLimit(String actNo, TransferLimitUpdateRequest transferLimitUpdateRequest) {
+        Account account = accountRepository.findByActNo(actNo)
+                .orElseThrow(() -> new RuntimeException("Account not found with actNo: " + actNo));
+
+        BigDecimal newTransferLimit = transferLimitUpdateRequest.newTransferLimit();
+        account.setTransferLimit(newTransferLimit);
+        accountRepository.save(account);
     }
 }
