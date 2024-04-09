@@ -63,7 +63,6 @@ public class UserController {
             @RequestParam (required = false, defaultValue = "0") int page,
             @RequestParam (required = false, defaultValue = "2") int limit){
         return userService.findList(page, limit);
-
     }
 
     @PutMapping("/{uuid}/profile-image")
