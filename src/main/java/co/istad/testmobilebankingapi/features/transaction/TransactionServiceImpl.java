@@ -72,13 +72,13 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public Page<TransactionResponse> findList(int page, int size, String sortOrder) {
+    public Page<TransactionResponse> findList(int page, int size, String sortOrder,String transactionType) {
         // Validate page and size
-        if(page < 0){
+        if (page < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Page must be greater than or equal to zero");
         }
-        if(size < 1){
+        if (size < 1) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Size must be greater than or equal to one");
         }
@@ -89,15 +89,21 @@ public class TransactionServiceImpl implements TransactionService{
         } else if (!"desc".equalsIgnoreCase(sortOrder)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Invalid sortOrder parameter. It must be 'asc' or 'desc'");
+        } else if ("desc".equalsIgnoreCase(sortOrder)) {
+            sortDirection = Sort.Direction.DESC;
         }
 
         Sort sortByTransactionDate = Sort.by(sortDirection, "transactionAt");
-
         PageRequest pageRequest = PageRequest.of(page, size, sortByTransactionDate);
-
-        Page<Transaction> transactions = transactionRepository.findAll(pageRequest);
+        Page<Transaction> transactions = transactionRepository.findAllByTransactionType(transactionType ,pageRequest);
 
         return transactions.map(transactionMapper::toTransactionResponse);
+    }
+
+
+    @Override
+    public TransactionResponse findByTransactionType(String transactionType) {
+        return null;
     }
 
 }

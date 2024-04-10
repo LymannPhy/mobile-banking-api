@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TransactionService {
     TransactionResponse transfer(TransactionCreateRequest transactionCreateRequest);
-    Page<TransactionResponse> findList(int page, int size, String sortOrder);
+    Page<TransactionResponse> findList(int page, int size, String sortOrder, String transactionType);
 }
