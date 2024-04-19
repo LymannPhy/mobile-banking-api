@@ -100,10 +100,4 @@ public class TransactionServiceImpl implements TransactionService{
         return transactions.map(transactionMapper::toTransactionResponse);
     }
 
-
-    @Override
-    public TransactionResponse findByTransactionType(String transactionType) {
-        return null;
-    }
-
 }

@@ -20,7 +20,9 @@ public class TransactionController {
 
     @GetMapping
     Page<TransactionResponse> findList(@RequestParam(required = false, defaultValue = "1") int page,
-                                       @RequestParam(required = false, defaultValue = "25") int size, @RequestParam String sortOrder){
-        return transactionService.findList(page, size, sortOrder);
+                                       @RequestParam(required = false, defaultValue = "25") int size,
+                                       @RequestParam String sortOrder,
+                                       @RequestParam String transaction_type){
+        return transactionService.findList(page, size, sortOrder, transaction_type);
     }
 }

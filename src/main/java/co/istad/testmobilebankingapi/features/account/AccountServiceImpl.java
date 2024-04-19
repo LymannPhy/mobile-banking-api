@@ -42,25 +42,6 @@ public class AccountServiceImpl implements AccountService{
     private final AccountMapper accountMapper;
     private final AccountTypeMapper accountTypeMapper;
     private final UserMapper userMapper;
-
-    @Override
-    public Page<AccountResponse> findList(int page, int size) {
-        //validate page and size
-        if(page < 0){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Page must be greater than or equal to zero");
-        }
-        if(size < 1){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Size must be greater than or equal to one");
-        }
-        Sort sortByActName = Sort.by(Sort.Direction.ASC, "actName");
-
-        PageRequest pageRequest = PageRequest.of(page, size, sortByActName);
-        Page<Account> accounts = accountRepository.findAll(pageRequest);
-        return accounts.map(accountMapper::toAccountResponse);
-    }
-
     @Override
     public void createNew(AccountCreateRequest accountCreateRequest) {
 
@@ -147,5 +128,23 @@ public class AccountServiceImpl implements AccountService{
         account.setTransferLimit(newTransferLimit);
         accountRepository.save(account);
         return accountMapper.toAccountResponse(account);
+    }
+
+    @Override
+    public Page<AccountResponse> findList(int page, int size) {
+        //validate page and size
+        if(page < 0){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Page must be greater than or equal to zero");
+        }
+        if(size < 1){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Size must be greater than or equal to one");
+        }
+        Sort sortByActName = Sort.by(Sort.Direction.ASC, "actName");
+
+        PageRequest pageRequest = PageRequest.of(page, size, sortByActName);
+        Page<Account> accounts = accountRepository.findAll(pageRequest);
+        return accounts.map(accountMapper::toAccountResponse);
     }
 }
