@@ -16,7 +16,7 @@ This project is a Mobile Banking API developed using the Spring Boot framework. 
 - **Spring Security**: Implements authentication and authorization mechanisms to secure endpoints.
 - **Spring Data JPA**: Simplifies database operations and ORM mapping.
 - **Hibernate**: Object-relational mapping framework for database interactions.
-- **MySQL/PostgreSQL**: Relational database management system for storing banking data.
+- **PostgreSQL**: Relational database management system for storing banking data.
 - **JSON Web Tokens (JWT)**: Used for stateless authentication and maintaining user sessions.
 - **Swagger**: Provides interactive API documentation for easy integration and testing.
 
